@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理后台</title>
+    <include file="./public/header" />
+    <style>
+        .previmg{height: 80px;width: auto!important}
+    </style>
+</head>
+
+<body data-type="index">
+    <include file="./public/topbar" />
+    <include file="./public/leftmenu" />
+    <div class="tpl-content-wrapper">
+        <include file="./public/bread" />
+        <div class="tpl-portlet-components">
+            <div class="portlet-title">
+                <div class="caption font-green bold">
+                    <span class="am-icon-code"></span> 公众号
+                </div>
+            </div>
+            <div class="tpl-block">
+                <div class="am-g">
+                    <div class="tpl-form-body tpl-form-line">
+                        <form class="am-form tpl-form-line-form">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">公众号名称</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="name" placeholder="请输入公众号名称" value="{$gzh['name']}">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">LOGO</label>
+                                <div class="am-u-sm-9">
+                                    <div class="am-form-group am-form-file">
+                                        <div class="tpl-form-file-img">
+                                            <img src="{$gzh['logo']}" alt="" class="previmg">
+                                        </div>
+                                        <input type="hidden" id="logo" name="logo" value="{$gzh['logo']}">
+                                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                            <i class="am-icon-cloud-upload"></i>选择图片</button>
+                                        <input id="img" name="img" type="file" multiple="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">APPID</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="appid" placeholder="" value="{$gzh['appid']}">
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">SECRET</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="secret" placeholder="" value="{$gzh['secret']}">
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success sub">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("body").on("change","#img",function(){
+            $.ajaxfileupload({
+                url: '{:U("Ajax/uploadimg")}', //用于文件上传的服务器端请求地址
+                type:'POST',
+                secureuri: false, //是否需要安全协议，一般设置为false
+                fileElementId: 'img', //文件上传域的ID
+                data:{"file":'img'},
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data){  //服务器成功响应处理函数
+                    if(data.code=="1"){
+                        $(".previmg").attr("src",data.msg);
+                        $("#logo").val(data.msg);
+                    }else{
+                        swal("上传失败，请重试");
+                    }
+                },
+                error: function (data, status, e){ //服务器响应失败处理函数
+                    console.log(data);
+                    console.log(123);
+                }
+            });
+        });
+        $(".sub").click(function(){
+            name = $("#name").val().trim();
+            logo = $("#logo").val().trim();
+            appid = $("#appid").val().trim();
+            secret = $("#secret").val().trim();
+            if(name && logo && appid && secret){
+                $.post('#', {name:name,logo:logo,appid:appid,secret:secret}, function(data, textStatus, xhr) {
+                    swal({
+                        title: data,
+                        type: "success",
+                        allowOutsideClick:"false",
+                        showCancelButton: false,
+                        confirmButtonText: "确认",
+                        confirmButtonColor: "#ec6c62"
+                    }, function() {
+                       console.log(123);
+                    });
+                },'json');
+            }else{
+                swal("请把信息填写完整");
+            }
+        });
+    </script>
+</body>
+
+</html>

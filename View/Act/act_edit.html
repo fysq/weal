@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理后台</title>
+    <include file="./public/header" />
+</head>
+
+<body data-type="index">
+    <include file="./public/topbar" />
+    <include file="./public/leftmenu" />
+    <div class="tpl-content-wrapper">
+        <include file="./public/bread" />
+        <div class="tpl-portlet-components">
+            <div class="tpl-portlet">
+                <div class="tpl-portlet-title">
+                    <div class="tpl-caption font-green ">
+                        <span>活动详情</span>
+                    </div>
+                </div>
+                <div class="am-tabs tpl-index-tabs" data-am-tabs="">
+                    <ul class="am-tabs-nav am-nav am-nav-tabs">
+                        <li class="am-active"><a href="#tab1">基础信息</a></li>
+                        <li><a href="#tab2">素材设置</a></li>
+                        <li><a href="#tab3">营销设置</a></li>
+                    </ul>
+                    <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                            <div class="tpl-block">
+                                <div class="am-g">
+                                    <div class="tpl-form-body tpl-form-line">
+                                        <form class="am-form tpl-form-line-form">
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">小程序码</label>
+                                                <div class="am-u-sm-9">
+                                                    <img src="http://localhost/loveshang/Application/Weal/public/img/user01.png" alt="" style="width: 90px;height: 90px;">
+                                                    (asdas)
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">活动标题</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" class="tpl-form-input" id="name"  value="{$ainfo['name']}">
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">活动名称</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" class="tpl-form-input" id="title"  value="{$ainfo['title']}">
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">次标题</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" class="tpl-form-input" id="subtitle"  value="{$ainfo['subtitle']}">
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">首图</label>
+                                                <div class="am-u-sm-9">
+                                                    <div class="am-form-group am-form-file">
+                                                        <div class="tpl-form-file-img">
+                                                            <img src="{$ainfo['img']}" alt="" class="previmg">
+                                                        </div>
+                                                        <input type="hidden" id="img" name="img" value="{$ainfo['img']}">
+                                                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                                            <i class="am-icon-cloud-upload"></i>选择图片</button>
+                                                        <input id="img" name="img" type="file" multiple="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">活动开始时间</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" id="stime"  value="{$ainfo['stime']}" class="datepicker">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">活动结束时间</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" id="etime"  value="{$ainfo['etime']}" class="datepicker">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">奖品总数</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" id="anum"  value="{$ainfo['anum']}">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">奖品剩余数</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" id="lnum"  value="{$ainfo['lnum']}">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-weibo" class="am-u-sm-3 am-form-label">初始机会次数</label>
+                                                <div class="am-u-sm-9">
+                                                    <input type="text" id="initcnum"  value="{$ainfo['initcnum']}">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                                    <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success sub">提交</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-tab-panel am-fade" id="tab2">
+                            123123
+                        </div>
+
+                        <div class="am-tab-panel am-fade" id="tab3">
+                            <div class="tpl-block">
+                                <div class="am-g">
+                                    <div class="tpl-form-body tpl-form-line">
+                                        <form class="am-form tpl-form-line-form">
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">分享链接</label>
+                                                <div class="am-u-sm-9">
+                                                    <div class="tpl-switch">
+                                                        <input type="checkbox" checked  class="ios-switch bigswitch tpl-switch-btn" id="share1">
+                                                        <div class="tpl-switch-btn-view">
+                                                            <div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">分享海报</label>
+                                                <div class="am-u-sm-9">
+                                                    <div class="tpl-switch">
+                                                        <input type="checkbox" checked  class="ios-switch bigswitch tpl-switch-btn" id="share2">
+                                                        <div class="tpl-switch-btn-view">
+                                                            <div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="user-name" class="am-u-sm-3 am-form-label">关注功能</label>
+                                                <div class="am-u-sm-9">
+                                                    <div class="tpl-switch">
+                                                        <input type="checkbox" checked  class="ios-switch bigswitch tpl-switch-btn" id="share3">
+                                                        <div class="tpl-switch-btn-view">
+                                                            <div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="share3con">
+                                                <div class="am-form-group">
+                                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">公众号设置</label>
+                                                    <div class="am-u-sm-9">
+                                                        <input type="text" id="anum"  value="{$ainfo['anum']}">
+                                                        <div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="am-form-group">
+                                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                                    <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success sub">提交</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        laydate.render({
+          elem: '.datepicker', //指定元素
+          type:'datetime'
+        });
+
+        $("#share3").next().click(function(event) {
+            check = $('#share3').is(':checked');
+            if(!check){
+                $("#share3con").removeClass('hide');
+            }else{
+                $("#share3con").addClass('hide');
+            }
+        });
+    </script>
+</body>
+
+</html>

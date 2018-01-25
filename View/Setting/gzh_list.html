@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理后台</title>
+    <include file="./public/header" />
+</head>
+
+<body data-type="index">
+    <include file="./public/topbar" />
+    <include file="./public/leftmenu" />
+    <div class="tpl-content-wrapper">
+        <include file="./public/bread" />
+        <div class="tpl-portlet-components">
+            <div class="tpl-block">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <button type="button" class="am-btn am-btn-default am-btn-success" onclick="location.href='{:U("Setting/gzh_add")}'"><span class="am-icon-plus"></span>新增公众号</button>
+<!--                                 <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
+                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
+                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-12">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                    <tr>
+                                        <th class="table-id">ID</th>
+                                        <th class="table-title">公众号LOGO</th>
+                                        <th class="table-type">公众号名称</th>
+                                        <th class="table-date am-hide-sm-only">添加日期</th>
+                                        <th class="table-set">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <volist name="list" id="vo" key="k">
+                                    <tr>
+                                        <td>{$k}</td>
+                                        <td><img src="{$vo.logo}" alt="" width="100"></td>
+                                        <td>{$vo.name}</td>
+                                        <td class="am-hide-sm-only">{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+                                        <td>
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="location.href='{:U("Setting/gzh_edit",array("gid"=>$vo['gid']))}'"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="gzh_del('{$vo['gid']}')"><span class="am-icon-trash-o"></span> 删除</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </volist>
+                                    <if condition="count($list) lt 1 ">
+                                        <tr>
+                                            <td colspan="5" class="tc">暂无数据~~~</td>
+                                        </tr>
+                                    </if>
+                                </tbody>
+                            </table>
+                            <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="tpl-alert"></div>
+        </div>
+    </div>
+    <script>
+        function gzh_del(gid){
+            swal({
+                title: "您确定要删除吗？",
+                text: "您确定要删除该公众号？",
+                type: "warning",
+                allowOutsideClick:"false",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                confirmButtonText: "确认删除",
+                confirmButtonColor: "#ec6c62",
+                cancelButtonText:"取消",
+                timer:null
+            }, function() {
+                $.ajax({
+                    url: "{:U('Setting/gzh_del')}",
+                    data:{gid:gid},
+                    type:"POST",
+                    dataType:"JSON",
+                }).success(function(data) {
+                    swal("操作成功!", "新建成功", "success");
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

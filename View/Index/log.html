@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+    <include file="./public/header" />
+	<link rel="stylesheet" type="text/css" href="{$PROOT}css/log.css">
+</head>
+<body>
+<div class="htmleaf-container">
+	<div class="wrapper">
+		<div class="container">
+			<h1 >Welcome</h1>
+			<form class="form" onsubmit="return false;">
+				<input type="text" class="uname" placeholder="用户名">
+				<input type="password" class="passwd" placeholder="密码">
+				<button type="submit" id="login-button">登陆</button>
+			</form>
+		</div>
+		
+		<ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</div>
+
+    <include file="./public/footer" />
+<script>
+$('#login-button').click(function (event) {
+	event.preventDefault();
+	uname = $(".uname").val().trim();
+	passwd = $(".passwd").val().trim();
+	if(uname && passwd){
+		$.ajax({
+        url:"{:U('Ajax/log')}",
+        type:'POST',
+        dataType:'json',
+        data:{uname:uname,passwd:passwd},
+        success:function(e){
+        	if(e.code=="1"){
+				$('form').fadeOut(500);
+				$('.wrapper').addClass('form-success');
+				setTimeout(function(){
+					location.href='{:U(index)}';
+				},'1000')
+        	}else{
+				swal(e.msg,"","warning");	
+        	}
+        },
+        error:function(e){
+        	console.log(e);
+        }
+        });
+	}else{
+		swal("请输入完整的用户名或密码","","warning");		
+
+	}
+});
+</script>
+</body>
+</html>

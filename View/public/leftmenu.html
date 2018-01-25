@@ -1,0 +1,74 @@
+<div class="tpl-page-container tpl-page-header-fixed">
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            管理
+        </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+                <li class="tpl-left-nav-item">
+                    <a href="{:U('Index/index')}" class="nav-link {$menu['Index'][0]}">
+                            <i class="am-icon-home"></i>
+                            <span>首页</span>
+                        </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="{:U('Act/act_list')}" class="nav-link tpl-left-nav-link-list {$menu['Act'][0]}">
+                            <i class="am-icon-vimeo"></i>
+                            <span>活动列表</span>
+                        </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-cny"></i>
+                            <span>订单列表</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                    <ul class="tpl-left-nav-sub-menu">
+                        <li>
+                            <a href="form-amazeui.html" class=" active">
+                                    <i class="am-icon-angle-right "></i>
+                                    <span>Amaze UI 表单</span>
+                                    <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                </a>
+                            <a href="form-line.html">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>线条表单</span>
+                                </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list {$menu['Setting'][0]}">
+                        <i class="am-icon-gear"></i>
+                        <span>基础设置</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right {:CONTROLLER_NAME=='Setting'?'tpl-left-nav-more-ico-rotate':''}"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" {$menu['Setting'][1]}>
+                        <li>
+                            <a href="{:U('Setting/gzh_list')}" class="{$menu['Setting']['gzh_list']}">
+                                <i class="am-icon-angle-right"></i>
+                                <span>公众号设置</span>
+                            </a>
+                            <a href="form-amazeui.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>分类设置</span>
+                            </a>
+                            <a href="form-line.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>默认素材</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="login.html" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-user-md"></i>
+                            <span>超级管理</span>
+
+                        </a>
+                </li>
+            </ul>
+        </div>
+    </div>
